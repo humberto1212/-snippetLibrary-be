@@ -1,6 +1,29 @@
 package com.example.snippet.snippet;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Snippet {
+
+    @Id
+    @SequenceGenerator(    
+    name = "snippet_sequence",
+    sequenceName = "snippet_sequence",
+    allocationSize = 1
+    )
+
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "snippet_sequence"
+    )
+
+
     private Long id;
     private String title;
     private String description;
