@@ -1,5 +1,8 @@
 package com.example.snippet.topic;
 
+
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
+
+
+@Entity(name = "Topic")
 @Table
 public class Topic {
 
@@ -23,8 +28,26 @@ public class Topic {
         generator = "topic_sequence"
     )
 
+    //========================
+    //Inst Variables - Columns
+    //========================
+    @Column(name = "id",
+            updatable = false
+    )
     private Long id;
+
+    @Column(name = "topic",
+    nullable = false,
+    unique = true
+    )
     private String topic;
+
+    
+    //@OneToOne( mappedBy = "topic")
+    //@JoinColumn(name = "topic_id", referencedColumnName = "id") 
+/*     @OneToOne
+    @PrimaryKeyJoinColumn
+    private Snippet snippet; */
 
     public Topic(){
 
@@ -58,15 +81,21 @@ public class Topic {
     public void setTopic(String topic){
         this.topic = topic;
     }
-
-    @Override
-    public String toString(){
-        return "Snipped{" + "id=" + id +
-                ", topic='" + topic + '\'' +
-                '}';
+    //SNIPPET TA
+  /*       public Snippet getSnippet(){
+        return snippet;
     }
 
+    public void setSnippet(Snippet snippet){
+        this.snippet = snippet;
+    }    */
 
+  @Override
+    public String toString(){
+        return "Topic{" + "id=" + id +
+                ", topic='" + topic + '\'' +
+                '}';
+    } 
 
 }
 
