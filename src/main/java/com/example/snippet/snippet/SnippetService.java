@@ -1,6 +1,7 @@
 package com.example.snippet.snippet;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,14 @@ public class SnippetService {
     public List<Snippet> getSnippet() {
 		return snippetRepository.findAll();
 	}
+
+    public void addNewSnippet(Snippet snippet){
+        Optional<Snippet> snippetByTitle = snippetRepository.findSnippetByTitle(snippet.getTitle());
+        if(snippetByTitle.isPresent()){
+            throw new IllegalStateException("The title already exists");
+        }
+        snippetRepository.save(snippet);
+        System.out.println(snippet);
+    }
     
 }
