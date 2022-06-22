@@ -1,8 +1,5 @@
 package com.example.snippet.snippet;
 
-
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -10,8 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+
+
 
 
 
@@ -60,13 +61,17 @@ public class Snippet {
     @Column(name = "topic",
     nullable = false
     )
-    private Integer topic; 
+    private Integer topic;    
 
-  /*   @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "topic_id", referencedColumnName="id")  */
-    /* @OneToOne(fetch = FetchType.LAZY)
-    @MapsId */
-   // private Topic topic; 
+    //One to one example
+   /*  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "topic_id")  
+    private Topic topic; */ 
+ 
+
+/* @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+@JoinColumn(name = "topic_id", nullable = false)
+private Topic topic;  */
 
     public Snippet() {
     }
@@ -74,25 +79,26 @@ public class Snippet {
     public Snippet( Long id,
                     String title,
                     String description,
-                    String codeSnippet,
-                    Integer topic
+                    String codeSnippet//,
+                    //Integer topic
                     ){
         this.id = id;
         this.title = title;
         this.description = description;
         this.codeSnippet = codeSnippet;
-        this.topic = topic;
+        //this.topic = topic;
     }
 
     public Snippet( String title,
                     String description,
                     String codeSnippet,
                     Integer topic
+                    //Topic topic
                     ){
         this.title = title;
         this.description = description;
         this.codeSnippet = codeSnippet;
-        //this.topic = topic;
+        this.topic = topic;
     }  
     //==============================
     //  	Getter and Setters
@@ -130,21 +136,21 @@ public class Snippet {
         this.codeSnippet = codeSnippet;
     }
     //TOPIC
-      public Integer getTopic(){
+        public Integer getTopic(){
         return topic;
     }
 
     public void setTopic(Integer topic){
         this.topic = topic;
-    }  
+    }    
     //TOPIC TA
-  /*   public Topic getTopic(){
+/*        public Topic getTopic(){
         return topic;
     }
 
     public void setTopic(Topic topic){
         this.topic = topic;
-    }   */
+    }     */ 
 
     @Override
     public String toString(){
