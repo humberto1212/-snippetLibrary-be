@@ -28,5 +28,14 @@ public class SnippetService {
         snippetRepository.save(snippet);
         System.out.println(snippet);
     }
+
+    public void deleteSnippetSe(Long snippetId){
+        boolean exists = snippetRepository.existsById(snippetId);
+        if (!exists){
+            throw new IllegalStateException("ID does not exists");
+        }
+
+        snippetRepository.deleteById(snippetId);
+    }
     
 }

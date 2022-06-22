@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+
+
+
 
 
 
@@ -31,7 +36,7 @@ public class Topic {
     //========================
     //Inst Variables - Columns
     //========================
-    @Column(name = "id",
+    @Column(name = "topic_id",
             updatable = false
     )
     private Long id;
@@ -42,12 +47,15 @@ public class Topic {
     )
     private String topic;
 
-    
-    //@OneToOne( mappedBy = "topic")
-    //@JoinColumn(name = "topic_id", referencedColumnName = "id") 
-/*     @OneToOne
-    @PrimaryKeyJoinColumn
-    private Snippet snippet; */
+ /*    @JsonIgnore
+    @ManyToOne //( mappedBy = "topic")
+    @JoinColumn //(name = "topic_id")//, referencedColumnName = "id") 
+    private Snippet snippet;  */ 
+ 
+/*     @JsonIgnore
+    @OneToMany //( mappedBy = "topic")
+    @JoinColumn(name = "topic")//, referencedColumnName = "id") 
+    private Snippet snippet;     */
 
     public Topic(){
 
@@ -82,13 +90,13 @@ public class Topic {
         this.topic = topic;
     }
     //SNIPPET TA
-  /*       public Snippet getSnippet(){
+/*            public Snippet getSnippet(){
         return snippet;
     }
 
     public void setSnippet(Snippet snippet){
         this.snippet = snippet;
-    }    */
+    }   */     
 
   @Override
     public String toString(){
